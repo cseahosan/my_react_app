@@ -42,10 +42,19 @@ class App extends Component {
     this.setState({ counters: counters });
   };
 
+  getNonZeroItems = () => {
+    let cnt = 0;
+    this.state.counters.forEach((counter) => {
+      if (counter.value > 0) ++cnt;
+    });
+
+    return cnt;
+  };
+
   render() {
     return (
       <>
-        <Navbar />
+        <Navbar nonZeroItems={this.getNonZeroItems()} />
         <Reset onReset={this.handleReset} />
         <Counters
           counters={this.state.counters}
